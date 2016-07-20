@@ -97,7 +97,7 @@ class PvC:
 
     def switch_player(self,player):
         if player == 1:
-            player =2
+            player = 'computer'
         else:
             player =1
         return player
@@ -109,8 +109,15 @@ class PvC:
             print("please enter a number 10-100")
             return False
 
+    def computer_turn(self,num_of_sticks):
+        comp_pick_up = random.choice(1,3)
+        num_of_sticks -= comp_pick_up
+        return num_of_sticks
+
     def gameplay(self):
         player = 1
+        counter = 0
+
         while True:
             num_of_sticks= input("Please enter a number from 10-100: ")
             try:
@@ -124,11 +131,14 @@ class PvC:
             print("please enter a number 10-100")
             break
 
+        if player == 'computer':
+            computer_turn(num_of_sticks)
+
 
         print("There are", num_of_sticks, "number of sticks left")
         while True:
             print("Player ",player)
-            while True:
+            while player == 1:
                 pick_up = int(input("Enter the amount of sticks you wish to pick up: "))
                 if self.valid_input(pick_up, num_of_sticks):
                     break
